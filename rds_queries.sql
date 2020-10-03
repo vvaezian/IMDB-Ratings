@@ -1,5 +1,5 @@
 create table basics (
-	id char(9),
+	id varchar(15),
 	title_type varchar(30),
 	primary_title varchar(200),
 	original_title varchar(200),
@@ -11,14 +11,14 @@ create table basics (
 )
 
 create table episodes (
-	id char(9),
-	parent_id char(9),
+	id varchar(15),
+	parent_id varchar(15),
 	season_number smallint,
 	episode_number smallint
 )
 
 create table ratings (
-	id char(9),
+	id varchar(15),
 	avg_rating numeric(3, 1),
 	num_votes int
 )
