@@ -32,3 +32,7 @@ where (ctid::text::point)[1]::int = 1
 
 
 CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops)
+create index idx_id_basics on basics (id);
+create index idx_id_episodes on episodes (id);
+create index idx_parent_id_episodes on episodes (parent_id);
+create index idx_id_ratings on ratings (id);
