@@ -26,10 +26,15 @@ create table ratings (
 	num_votes int
 )
 
--- in basics table and episodes table, there are two rows for every record. we delete of them
+-- there are two rows for every record. we delete of them
 delete from basics 
 where (ctid::text::point)[1]::int % 2 = 1
 
+delete from episodes
+where (ctid::text::point)[1]::int % 2 = 1
+
+delete from ratings
+where (ctid::text::point)[1]::int % 2 = 1
 
 CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops)
 create index idx_id_basics on basics (id);
