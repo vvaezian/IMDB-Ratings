@@ -26,18 +26,20 @@ create table ratings (
 	num_votes int
 )
 
--- there are two rows for every record. we delete of them
-delete from basics 
-where (ctid::text::point)[1]::int % 2 = 1
-
-delete from episodes
-where (ctid::text::point)[1]::int % 2 = 1
-
-delete from ratings
-where (ctid::text::point)[1]::int % 2 = 1
-
-CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops)
+CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops);
 create index idx_id_basics on basics (id);
 create index idx_id_episodes on episodes (id);
 create index idx_parent_id_episodes on episodes (parent_id);
 create index idx_id_ratings on ratings (id);
+
+-- there are two rows for every record. we delete of them
+-- decided to delete the duplicates on the csv file, because it was more reliable
+
+-- delete from basics 
+-- where (ctid::text::point)[1]::int % 2 = 1
+
+-- delete from episodes
+-- where (ctid::text::point)[1]::int % 2 = 1
+
+-- delete from ratings
+-- where (ctid::text::point)[1]::int % 2 = 1
