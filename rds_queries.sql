@@ -5,8 +5,8 @@ create table basics (
 	primary_title varchar(500),
 	original_title varchar(500),
 	is_adult int,
-	start_Year char(4),
-	end_year char(4),
+	start_Year int,
+	end_year int,
 	runtime_minutes int,
 	genres varchar(200)
 )
