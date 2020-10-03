@@ -25,3 +25,14 @@ create table ratings (
 	avg_rating numeric(3, 1),
 	num_votes int
 )
+
+delete from basics a using basics b
+where a.id < b.id
+and a.title_type = b.title_type
+and a.original_title = b.original_title
+and a.start_year = b.start_year
+and a.runtime_minute = b.runtime_minute
+and a.genres = b.genres
+
+
+CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops)
