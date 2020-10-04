@@ -26,6 +26,33 @@ create table ratings (
 	num_votes int
 )
 
+-- GENRES (Helper Table)
+create table genres (
+	genre varchar(20)
+)
+
+insert into genres 
+values ('Action'),('Adventure'),('Animation'),('Biography'),('Comedy'),('Crime'),('Drama')
+		,('Family'),('Fantasy'),('Film-Noir'),('History'),('Horror'),('Music'),('Musical')
+		,('Mystery'),('Romance'),('Sci-Fi'),('Sport'),('Thriller'),('War'),('Western')
+		
+-- MOVIES and SERIES
+select a.id, title_type,
+	case when title_type in ('movie', 'tvMovie') then 'Movie'
+		 when title_type in ('tvSeries', 'tvMiniSeries') then 'Series'
+	end as item_type,
+	original_title, primary_title, start_year, runtime_minutes, genres, avg_rating, num_votes
+into movies_series
+from basics a
+join ratings b on a.id = b.id
+where title_type in ('movie','tvMovie','tvSeries','tvMiniSeries')
+
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+
 -- CREATE INDEX idx_original_title ON basics (LOWER(original_title) varchar_pattern_ops);
 -- create index idx_id_basics on basics (id);
 -- create index idx_id_episodes on episodes (id);
@@ -53,16 +80,6 @@ where title_type in ('movie', 'tvMovie')
 CREATE INDEX idx_original_title_movies ON movies (LOWER(original_title) varchar_pattern_ops);
 create index idx_original_title_movies2 on movies (original_title);
 
--- GENRES (Helper Table)
-create table genres (
-	genre varchar(20)
-)
-
-insert into genres 
-values ('Action'),('Adventure'),('Animation'),('Biography'),('Comedy'),('Crime'),('Drama')
-		,('Family'),('Fantasy'),('Film-Noir'),('History'),('Horror'),('Music'),('Musical')
-		,('Mystery'),('Romance'),('Sci-Fi'),('Sport'),('Thriller'),('War'),('Western')
-		
 -- there are two rows for every record. we delete of them
 -- decided to delete the duplicates on the csv file, because it was more reliable
 
