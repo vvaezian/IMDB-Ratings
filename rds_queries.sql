@@ -32,6 +32,14 @@ create index idx_id_episodes on episodes (id);
 create index idx_parent_id_episodes on episodes (parent_id);
 create index idx_id_ratings on ratings (id);
 
+-- creating series table
+select a.parent_id "Series ID", a.id "Episode ID", a.season_number "Season", a.episode_number "Episode", b.avg_rating "Rating", b.num_votes "# Votes"
+	, c.original_title, primary_title, c.start_year, c.end_year, runtime_minutes, genres
+into series
+from episodes a 
+	left join ratings b on a.id = b.id
+	     join basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
+		 
 -- there are two rows for every record. we delete of them
 -- decided to delete the duplicates on the csv file, because it was more reliable
 
