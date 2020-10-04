@@ -37,8 +37,8 @@ select a.parent_id "Series ID", a.id "Episode ID", a.season_number "Season", a.e
 	, c.original_title, primary_title, c.start_year, c.end_year, runtime_minutes, genres
 into series
 from episodes a 
-	left join ratings b on a.id = b.id
-	     join basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
+	join ratings b on a.id = b.id
+	join basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
 
 CREATE INDEX idx_original_title_series ON series (LOWER(original_title) varchar_pattern_ops);
 create index idx_original_title_series2 on series (original_title);
