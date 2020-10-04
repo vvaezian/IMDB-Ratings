@@ -50,6 +50,9 @@ from basics a
 join ratings b on a.id = b.id
 where title_type in ('movie', 'tvMovie')
 
+CREATE INDEX idx_original_title_movies ON movies (LOWER(original_title) varchar_pattern_ops);
+create index idx_original_title_movies2 on movies (original_title);
+
 -- there are two rows for every record. we delete of them
 -- decided to delete the duplicates on the csv file, because it was more reliable
 
