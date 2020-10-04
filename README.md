@@ -1,5 +1,3 @@
-Find the highest rated movies and episodes using the following interactive dashboards.
-
 ### Movies and Series
 - Find the highest-rated Movies and Series using **[this](http://metabase.intellimenta.com/public/dashboard/eae564a4-d9a3-46b1-9cd4-1f95ab5b1b18)** interactive dashboard.
 - Ability to filter by genre, year, minimu rating and minimum number of votes.
