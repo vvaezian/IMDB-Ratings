@@ -1,3 +1,6 @@
+[![Suggestions&BugReports_Welcome](https://img.shields.io/badge/Suggestions-BugReports-blue)](https://github.com/vvaezian/IMDB-Ratings/issues)
+[![HitCount](http://hits.dwyl.com/vvaezian/IMDB-Ratings.svg)](http://hits.dwyl.com/vvaezian/IMDB-Ratings)
+
 ### Movies and Series
 - Find the highest-rated Movies and Series using **[this](http://metabase.intellimenta.com/public/dashboard/eae564a4-d9a3-46b1-9cd4-1f95ab5b1b18)** interactive dashboard.
 - Ability to filter by genre, year, minimu rating and minimum number of votes.
