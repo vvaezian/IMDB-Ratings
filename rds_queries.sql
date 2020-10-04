@@ -53,6 +53,16 @@ where title_type in ('movie', 'tvMovie')
 CREATE INDEX idx_original_title_movies ON movies (LOWER(original_title) varchar_pattern_ops);
 create index idx_original_title_movies2 on movies (original_title);
 
+-- GENRES (Helper Table)
+create table genres (
+	genre varchar(20)
+)
+
+insert into genres 
+values ('Action'),('Adventure'),('Animation'),('Biography'),('Comedy'),('Crime'),('Drama')
+		,('Family'),('Fantasy'),('Film-Noir'),('History'),('Horror'),('Music'),('Musical')
+		,('Mystery'),('Romance'),('Sci-Fi'),('Sport'),('Thriller'),('War'),('Western')
+		
 -- there are two rows for every record. we delete of them
 -- decided to delete the duplicates on the csv file, because it was more reliable
 
