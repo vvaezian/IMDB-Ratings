@@ -6,7 +6,7 @@
 
 <img src="Files/dash1.png" width="800">
 
-### Series' Episodes
+### Episodes
 - Find the top-rated episodes for any series using **[this interactive dashboard](http://metabase.intellimenta.com/public/dashboard/bb812d83-7cef-404e-8e14-87e1552cbe7c)** .
 - This is most useful for series that have independent episode structure (i.e. each episode can be watched without knowledge of previous episodes), e.x. The Simpsons, Seinfeld, Bob's Burger, ...
 
