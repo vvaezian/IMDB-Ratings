@@ -72,3 +72,28 @@ create index idx_original_title_series2 on series (original_title);
 
 -- delete from ratings
 -- where (ctid::text::point)[1]::int % 2 = 1
+
+
+----------------------
+------- Cards --------
+----------------------
+ 
+-- episodes rating
+select case when length(cast("Season" as varchar)) = 1 then case when length(cast("Episode" as varchar)) = 1 then concat('S0', cast("Season" as varchar), 'E0', cast("Episode" as varchar) )
+                                                                 else concat('S0', cast("Season" as varchar), 'E', cast("Episode" as varchar) )
+                                                            end
+            else case when length(cast("Episode" as varchar)) = 1 then concat('S', cast("Season" as varchar), 'E0', cast("Episode" as varchar) )
+                      else concat('S', cast("Season" as varchar), 'E', cast("Episode" as varchar) )
+                 end
+       end as episode_full_name, "Rating"
+from series
+where [[ {{primary_title}} ]]
+order by 1
+			
+-- episodes ranking
+select primary_title "Title", genres "Genres", start_year "Start Year", end_year "End Year", 
+    "Season", "Episode", "Rating", "# Votes", concat('https://www.imdb.com/title/', "Episode ID") "Link"
+from series
+where 1 = 1
+[[ and {{primary_title}} ]]
+order by "Rating" desc
