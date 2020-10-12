@@ -2,7 +2,7 @@
 
 ### Movies and Series
 - Find the top-rated Movies and Series using **[this interactive dashboard](http://metabase.intellimenta.com/public/dashboard/eae564a4-d9a3-46b1-9cd4-1f95ab5b1b18)**.
-- Ability to filter by genre, year, minimu rating and minimum number of votes.
+- Ability to filter by genre, year, minimum rating and minimum number of votes.
 
 <img src="Files/dash1.png" width="800">
 
