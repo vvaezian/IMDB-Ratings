@@ -43,8 +43,8 @@ select a.id, title_type,
 	end as item_type,
 	original_title, primary_title, start_year, runtime_minutes, genres, avg_rating, num_votes
 into movies_series
-from basics a
-join ratings b on a.id = b.id
+from source_basics a
+join source_ratings b on a.id = b.id
 where title_type in ('movie','tvMovie','tvSeries','tvMiniSeries')
 
 create index idx_item_type_movies_series on movies_series (item_type)
@@ -53,9 +53,9 @@ create index idx_item_type_movies_series on movies_series (item_type)
 select a.parent_id "Series ID", a.id "Episode ID", a.season_number "Season", a.episode_number "Episode", b.avg_rating "Rating", b.num_votes "# Votes"
 	, c.original_title, primary_title, c.start_year, c.end_year, runtime_minutes, genres
 into series
-from episodes a 
-	join ratings b on a.id = b.id
-	join basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
+from source_episodes a 
+	join source_ratings b on a.id = b.id
+	join source_basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
 
 create index idx_original_title_series on series (lower(original_title) varchar_pattern_ops);
 create index idx_original_title_series2 on series (original_title);
