@@ -51,10 +51,11 @@ create index idx_item_type_movies_series on movies_series (item_type)
 
 -- Series' Episodes
 select a.parent_id "Series ID", a.id "Episode ID", a.season_number "Season", a.episode_number "Episode", b.avg_rating "Rating", b.num_votes "# Votes"
-  , c.original_title, c.primary_title, d.original_title episode_original_title, d.primary_title episode_title, c.start_year, c.end_year, c.runtime_minutes, c.genres
+  , c.original_title, c.primary_title, c.start_year, c.end_year, c.runtime_minutes, c.genres
+  , d.original_title episode_original_title, d.primary_title episode_title, d.start_year "Episode Year"
 into series
 from source_episodes a 
-  join source_ratings b on a.id = b.id
+  join source_ratings b on a.id = b.id 
   join source_basics d on a.id = d.id 
   join source_basics c on a.parent_id = c.id
 
