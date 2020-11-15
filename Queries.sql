@@ -58,8 +58,8 @@ from source_episodes a
   join source_basics d on a.id = d.id 
   join source_basics c on a.parent_id = c.id
 
-create index idx_primary_title_series on series (lower(primary_title) varchar_pattern_ops);
-create index idx_primary_title_series2 on series (primary_title);
+create index idx_primary_title_search on series (lower(primary_title) varchar_pattern_ops);
+create index idx_primary_title_filter on series (primary_title);
 
 
 -- there are two rows for every record. we delete of them
