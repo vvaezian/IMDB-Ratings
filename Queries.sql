@@ -79,6 +79,14 @@ create index idx_primary_title_series2 on series (original_title);
 ------- Cards --------
 ----------------------
  
+-- Seasons Rating (AVG)
+select "Season", avg("Rating") "Rating Average"
+from series
+where 1 = 1
+[[ and {{primary_title}} ]]
+[[ and "# Votes" > {{num_votes}} ]]
+group by "Season"
+
 -- episodes rating
 select case when length(cast("Season" as varchar)) = 1 then case when length(cast("Episode" as varchar)) = 1 then concat('S0', cast("Season" as varchar), 'E0', cast("Episode" as varchar) )
                                                                  else concat('S0', cast("Season" as varchar), 'E', cast("Episode" as varchar) )
