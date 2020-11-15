@@ -92,9 +92,10 @@ where [[ {{primary_title}} ]]
 order by 1
 			
 -- episodes ranking
-select primary_title "Title", genres "Genres", start_year "Start Year", end_year "End Year", 
-    "Season", "Episode", "Rating", "# Votes", concat('https://www.imdb.com/title/', "Episode ID") "Link"
+select episode_title "Episode Title", "Season", "Episode", "Rating", "# Votes", concat('https://www.imdb.com/title/', "Episode ID") "Link"
 from series
-where 1 = 1
+where "Season" is not null
+and "Episode" is not null
 [[ and {{primary_title}} ]]
+[[ and "# Votes" > {{num_votes}} ]]
 order by "Rating" desc
