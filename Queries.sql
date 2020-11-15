@@ -51,14 +51,15 @@ create index idx_item_type_movies_series on movies_series (item_type)
 
 -- Series' Episodes
 select a.parent_id "Series ID", a.id "Episode ID", a.season_number "Season", a.episode_number "Episode", b.avg_rating "Rating", b.num_votes "# Votes"
-	, c.original_title, primary_title, c.start_year, c.end_year, runtime_minutes, genres
+  , c.original_title, c.primary_title, d.original_title episode_original_title, d.primary_title episode_title, c.start_year, c.end_year, c.runtime_minutes, c.genres
 into series
 from source_episodes a 
-	join source_ratings b on a.id = b.id
-	join source_basics c on a.parent_id = c.id and c.title_type in ('tvSeries', 'tvMiniSeries')
+  join source_ratings b on a.id = b.id
+  join source_basics d on a.id = d.id 
+  join source_basics c on a.parent_id = c.id
 
-create index idx_original_title_series on series (lower(original_title) varchar_pattern_ops);
-create index idx_original_title_series2 on series (original_title);
+create index idx_primary_title_series on series (lower(original_title) varchar_pattern_ops);
+create index idx_primary_title_series2 on series (original_title);
 
 
 -- there are two rows for every record. we delete of them
