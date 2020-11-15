@@ -86,9 +86,12 @@ select case when length(cast("Season" as varchar)) = 1 then case when length(cas
             else case when length(cast("Episode" as varchar)) = 1 then concat('S', cast("Season" as varchar), 'E0', cast("Episode" as varchar) )
                       else concat('S', cast("Season" as varchar), 'E', cast("Episode" as varchar) )
                  end
-       end as episode_full_name, "Rating"
+        end as episode_full_name, "Rating"
 from series
-where [[ {{primary_title}} ]]
+where "Season" is not Null
+and "Episode" is not Null
+[[ and {{primary_title}} ]]
+[[ and "# Votes" > {{num_votes}} ]]
 order by 1
 			
 -- episodes ranking
