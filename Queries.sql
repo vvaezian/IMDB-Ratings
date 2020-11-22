@@ -63,19 +63,6 @@ create index idx_primary_title_search on series (lower(primary_title) varchar_pa
 create index idx_primary_title_filter on series (primary_title);
 
 
--- there are two rows for every record. we delete of them
--- (decided to delete the duplicates on the csv file, because it was more reliable)
-
--- delete from basics 
--- where (ctid::text::point)[1]::int % 2 = 1
-
--- delete from episodes
--- where (ctid::text::point)[1]::int % 2 = 1
-
--- delete from ratings
--- where (ctid::text::point)[1]::int % 2 = 1
-
-
 ----------------------
 ------- Cards --------
 ----------------------
@@ -111,3 +98,29 @@ and "Episode" is not null
 [[ and {{primary_title}} ]]
 [[ and "# Votes" > {{num_votes}} ]]
 order by "Rating" desc
+				       
+-- Movies and Series
+select primary_title "Title", item_type "Item Type", genres "Genres", start_year "Year", runtime_minutes "Runtime", 
+  avg_rating "Rating", num_votes "# Votes", concat('https://www.imdb.com/title/', id) "Link"
+from movies_series
+where 1 = 1
+[[ and {{item_type}} ]]
+[[ and genres like concat('%', cast((select genre from genres where {{genre}} ) as varchar(20)), '%')  ]]
+[[ and {{year}} ]]
+[[ and {{title}} ]]
+[[ and avg_rating > {{rating}} ]]
+[[ and num_votes > {{num_votes}} ]]
+order by avg_rating desc
+				       
+
+-- there are two rows for every record. we delete of them
+-- (decided to delete the duplicates on the csv file, because it was more reliable)
+
+-- delete from basics 
+-- where (ctid::text::point)[1]::int % 2 = 1
+
+-- delete from episodes
+-- where (ctid::text::point)[1]::int % 2 = 1
+
+-- delete from ratings
+-- where (ctid::text::point)[1]::int % 2 = 1
